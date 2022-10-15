@@ -1,6 +1,6 @@
 package com.nhnacademy.edu.project.repository;
 
-import com.nhnacademy.edu.project.parser.WarterBill;
+import com.nhnacademy.edu.project.parser.WaterBill;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ public interface Tariff {
     public void load(String fileLocation);
 
     // 사용량에 따른 표금 찾기
-    public List<WarterBill> findPriceByUsage(int waterUsage);
+    public List<WaterBill> findPriceByUsage(int waterUsage);
 }

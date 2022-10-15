@@ -1,6 +1,7 @@
 package com.nhnacademy.edu;
 
-import com.nhnacademy.edu.project.parser.WarterBill;
+import com.nhnacademy.edu.project.config.MainConfig;
+import com.nhnacademy.edu.project.parser.WaterBill;
 import com.nhnacademy.edu.project.report.ResultReport;
 import com.nhnacademy.edu.project.repository.Tariff;
 import com.nhnacademy.edu.project.service.WaterUseService;
@@ -20,17 +21,19 @@ public class Main {
 //        csvDataParser.parse(file.getAbsolutePath());
 //        csvDataParser.findAll().stream().forEach(d -> System.out.println(d));
 
-        ApplicationContext context = new AnnotationConfigApplicationContext("com.nhnacademy.edu.project");
+//        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfig.class);AnootaionC
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("com.nhnacademy.edu.project");
+
         Tariff tariffRepository = context.getBean("tariffRepository", Tariff.class);
         tariffRepository.load(file.getAbsolutePath());
 //        tariffRepository.findPriceByUsage(1000)
 //                .stream().forEach(o -> System.out.println(o));
 
         WaterUseService defaultWaterUseService = context.getBean("defaultWaterUseService", WaterUseService.class);
-        List<WarterBill> warterBills = defaultWaterUseService.calcBillTotal(1000);
+        List<WaterBill> waterBills = defaultWaterUseService.calcBillTotal(2000);
 
         ResultReport defaultResultReport = context.getBean("defaultResultReport", ResultReport.class);
-        List<WarterBill> report = defaultResultReport.report(warterBills);
+        List<WaterBill> report = defaultResultReport.report(waterBills);
         System.out.println(report);
     }
 }

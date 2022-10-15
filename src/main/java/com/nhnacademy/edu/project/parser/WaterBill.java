@@ -1,6 +1,6 @@
 package com.nhnacademy.edu.project.parser;
 
-public class WarterBill {
+public class WaterBill {
 
     private final int index;
     private final String city;
@@ -12,7 +12,7 @@ public class WarterBill {
     private int unitPrice;
     private int billTotal;
 
-    public WarterBill(int index, String city, String sector,int sctionStart, int sctionEnd, int unitPrice) {
+    public WaterBill(int index, String city, String sector, int sctionStart, int sctionEnd, int unitPrice) {
         this.index = index;
         this.city = city;
         this.sector = sector;

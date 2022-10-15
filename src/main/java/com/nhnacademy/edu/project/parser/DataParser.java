@@ -5,5 +5,5 @@ import java.util.Collection;
 public interface DataParser {
     public void parse(String fileLocation);
 
-    public Collection<WarterBill> findAll();
+    public Collection<WaterBill> findAll();
 }
