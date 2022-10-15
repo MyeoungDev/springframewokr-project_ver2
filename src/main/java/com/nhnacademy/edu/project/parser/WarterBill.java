@@ -19,8 +19,6 @@ public class WarterBill {
         this.sctionStart = sctionStart;
         this.sctionEnd = sctionEnd;
         this.unitPrice = unitPrice;
-        // 총 금액
-//        this.billTotal = null;
     }
 
     public String getCity() {
@@ -47,6 +45,10 @@ public class WarterBill {
         return billTotal;
     }
 
+    public void setBillTotal(int billTotal) {
+        this.billTotal = billTotal;
+    }
+
     @Override
     public String toString() {
         return "WarterBill{" +
@@ -57,6 +59,6 @@ public class WarterBill {
                 ", sctionEnd=" + sctionEnd +
                 ", unitPrice=" + unitPrice +
                 ", billTotal=" + billTotal +
-                '}';
+                '}' + "\n";
     }
 }
