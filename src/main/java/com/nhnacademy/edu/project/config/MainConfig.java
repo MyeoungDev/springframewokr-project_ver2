@@ -13,4 +13,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 public class MainConfig {
 
+    public CsvDataParser csvDataParser() {
+        return new CsvDataParser();
+    }
+
 }

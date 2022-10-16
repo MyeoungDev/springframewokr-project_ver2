@@ -14,7 +14,13 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        File file = new File("src/main/resources/data/Tariff_20220331.csv");
+        File csvFile = new File("src/main/resources/data/Tariff_20220331.csv");
+
+        File jsonFile = new File("src/main/resources/data/Tariff_20220331.json");
+
+        String fileName = jsonFile.getName();
+        String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
+        System.out.println(extension);
 //        file.getAbsolutePath();
 
 //        CsvDataParser csvDataParser = new CsvDataParser();
@@ -25,12 +31,12 @@ public class Main {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("com.nhnacademy.edu.project");
 
         Tariff tariffRepository = context.getBean("tariffRepository", Tariff.class);
-        tariffRepository.load(file.getAbsolutePath());
+        tariffRepository.load(csvFile.getAbsolutePath());
 //        tariffRepository.findPriceByUsage(1000)
 //                .stream().forEach(o -> System.out.println(o));
 
         WaterUseService defaultWaterUseService = context.getBean("defaultWaterUseService", WaterUseService.class);
-        List<WaterBill> waterBills = defaultWaterUseService.calcBillTotal(2000);
+        List<WaterBill> waterBills = defaultWaterUseService.calcBillTotal(1000);
 
         ResultReport defaultResultReport = context.getBean("defaultResultReport", ResultReport.class);
         List<WaterBill> report = defaultResultReport.report(waterBills);

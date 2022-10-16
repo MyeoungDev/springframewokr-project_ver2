@@ -1,62 +1,66 @@
-package com.nhnacademy.edu.project.repository;
+package com.nhnacademy.edu.project.service;
 
 import com.nhnacademy.edu.project.parser.CsvDataParser;
 import com.nhnacademy.edu.project.parser.WaterBill;
+import com.nhnacademy.edu.project.repository.TariffRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class TariffRepositoryTest {
-
-    TariffRepository tariffRepository;
+class DefaultWaterUseServiceTest {
 
     @InjectMocks
     CsvDataParser csvDataParser;
+
+    @InjectMocks
+    TariffRepository tariffRepository;
+
+    DefaultWaterUseService defaultWaterUseService;
 
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
         tariffRepository = new TariffRepository(csvDataParser);
-    }
-
-    @Test
-    void load() {
+        defaultWaterUseService = new DefaultWaterUseService(tariffRepository);
 
         File file = new File("src/main/resources/data/Tariff_20220331.csv");
 
         tariffRepository.load(file.getAbsolutePath());
 
-        assertThat(csvDataParser.findAll()).isNotEmpty();
-
     }
 
     @Test
-    void findPriceByUsage() {
+    void calcBillTotal() {
 
         // 사용량
         int usage = 1000;
 
-        File file = new File("src/main/resources/data/Tariff_20220331.csv");
+        List<WaterBill> waterBills = defaultWaterUseService.calcBillTotal(usage);
+        boolean checkNull = true;
+        boolean checkPrice = true;
 
-        tariffRepository.load(file.getAbsolutePath());
+        for (WaterBill bill : waterBills) {
+            if (bill.getBillTotal() == 0) {
+                checkNull = false;
+            }
 
-        List<WaterBill> priceByUsage = tariffRepository.findPriceByUsage(usage);
+            if (bill.getBillTotal() / usage != bill.getUnitPrice()) {
+                checkPrice = false;
+            }
 
-        assertThat(priceByUsage.stream().count()).isEqualTo(103);
+        }
 
-        // 에러 던지는 상황 ( 사용량 < 0 || 사용량 > 999999999 )
-        assertThrows(NoSuchElementException.class, () -> tariffRepository.findPriceByUsage(-1));
+        assertThat(checkNull).isTrue();
+        assertThat(checkPrice).isTrue();
+
 
     }
 }
