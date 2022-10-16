@@ -15,7 +15,9 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        File file = new File("src/main/resources/data/Tariff_20220331.csv");
+//        File file = new File("src/main/resources/data/Tariff_20220331.csv");
+
+        File file = new File("src/main/resources/data/Tariff_20220331.json");
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("com.nhnacademy.edu.project");
 

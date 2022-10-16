@@ -15,7 +15,7 @@ public class RepoConfig {
 
     @Bean
     public TariffRepository tariffRepository() {
-        return new TariffRepository(mainConfig.csvDataParser());
+        return new TariffRepository(mainConfig);
     }
 
 

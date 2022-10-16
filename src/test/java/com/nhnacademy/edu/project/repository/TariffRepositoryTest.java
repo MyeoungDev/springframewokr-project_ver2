@@ -1,5 +1,6 @@
 package com.nhnacademy.edu.project.repository;
 
+import com.nhnacademy.edu.project.config.MainConfig;
 import com.nhnacademy.edu.project.parser.CsvDataParser;
 import com.nhnacademy.edu.project.parser.WaterBill;
 import org.assertj.core.api.Assertions;
@@ -27,7 +28,7 @@ class TariffRepositoryTest {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        tariffRepository = new TariffRepository(csvDataParser);
+        tariffRepository = new TariffRepository(new MainConfig());
     }
 
     @Test

@@ -1,5 +1,6 @@
 package com.nhnacademy.edu.project.report;
 
+import com.nhnacademy.edu.project.config.MainConfig;
 import com.nhnacademy.edu.project.parser.CsvDataParser;
 import com.nhnacademy.edu.project.parser.WaterBill;
 import com.nhnacademy.edu.project.repository.TariffRepository;
@@ -34,7 +35,7 @@ class DefaultResultReportTest {
         File file = new File("src/main/resources/data/Tariff_20220331.csv");
 
 
-        tariffRepository = new TariffRepository(csvDataParser);
+        tariffRepository = new TariffRepository(new MainConfig());
 
         tariffRepository.load(file.getAbsolutePath());
 

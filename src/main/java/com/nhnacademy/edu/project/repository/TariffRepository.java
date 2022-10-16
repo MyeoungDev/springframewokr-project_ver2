@@ -1,24 +1,38 @@
 package com.nhnacademy.edu.project.repository;
 
+import com.nhnacademy.edu.project.config.MainConfig;
 import com.nhnacademy.edu.project.parser.DataParser;
 import com.nhnacademy.edu.project.parser.WaterBill;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Component
 public class TariffRepository implements Tariff {
 
-    private final DataParser dataParser;
+//    private final DataParser dataParser;
+//
+//    public TariffRepository(DataParser dataParser) {
+//        this.dataParser = dataParser;
+//    }
 
-    public TariffRepository(DataParser dataParser) {
-        this.dataParser = dataParser;
+    private final MainConfig mainConfig;
+    private DataParser dataParser;
+
+    public TariffRepository(MainConfig mainConfig) {
+        this.mainConfig = mainConfig;
+        dataParser = null;
     }
+
 
     @Override
     public void load(String fileLocation) {
+        String extension = fileLocation.substring(fileLocation.lastIndexOf(".") + 1);
+        System.out.println(extension);
+        this.dataParser = mainConfig.getDataParser(extension);
         dataParser.parse(fileLocation);
     }
 

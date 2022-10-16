@@ -1,5 +1,6 @@
 package com.nhnacademy.edu.project.service;
 
+import com.nhnacademy.edu.project.config.MainConfig;
 import com.nhnacademy.edu.project.parser.CsvDataParser;
 import com.nhnacademy.edu.project.parser.WaterBill;
 import com.nhnacademy.edu.project.repository.TariffRepository;
@@ -28,7 +29,7 @@ class DefaultWaterUseServiceTest {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        tariffRepository = new TariffRepository(csvDataParser);
+        tariffRepository = new TariffRepository(new MainConfig());
         defaultWaterUseService = new DefaultWaterUseService(tariffRepository);
 
         File file = new File("src/main/resources/data/Tariff_20220331.csv");
