@@ -1,7 +1,6 @@
 package com.nhnacademy.edu.project.config;
 
 
-import com.nhnacademy.edu.project.aop.LogAspect;
 import com.nhnacademy.edu.project.parser.CsvDataParser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,6 +12,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 public class MainConfig {
 
+    @Bean
     public CsvDataParser csvDataParser() {
         return new CsvDataParser();
     }

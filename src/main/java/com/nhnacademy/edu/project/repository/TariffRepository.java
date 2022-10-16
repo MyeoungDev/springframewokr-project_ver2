@@ -2,7 +2,6 @@ package com.nhnacademy.edu.project.repository;
 
 import com.nhnacademy.edu.project.parser.DataParser;
 import com.nhnacademy.edu.project.parser.WaterBill;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

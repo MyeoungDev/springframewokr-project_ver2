@@ -10,7 +10,7 @@ public class WaterBill {
     private int sctionEnd;
 
     private int unitPrice;
-    private int billTotal;
+    private long billTotal;
 
     public WaterBill(int index, String city, String sector, int sctionStart, int sctionEnd, int unitPrice) {
         this.index = index;
@@ -19,14 +19,6 @@ public class WaterBill {
         this.sctionStart = sctionStart;
         this.sctionEnd = sctionEnd;
         this.unitPrice = unitPrice;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getSector() {
-        return sector;
     }
 
     public int getSctionStart() {
@@ -41,7 +33,7 @@ public class WaterBill {
         return unitPrice;
     }
 
-    public int getBillTotal() {
+    public long getBillTotal() {
         return billTotal;
     }
 
@@ -51,14 +43,11 @@ public class WaterBill {
 
     @Override
     public String toString() {
-        return "WarterBill{" +
-                "index=" + index +
-                ", city='" + city + '\'' +
+        return "WaterBill{" +
+                "city='" + city + '\'' +
                 ", sector='" + sector + '\'' +
-                ", sctionStart=" + sctionStart +
-                ", sctionEnd=" + sctionEnd +
                 ", unitPrice=" + unitPrice +
                 ", billTotal=" + billTotal +
-                '}' + "\n";
+                '}' + '\n';
     }
 }

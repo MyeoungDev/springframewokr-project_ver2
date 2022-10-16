@@ -18,8 +18,6 @@ public class CsvDataParser implements DataParser {
     @Override
     public void parse(String fileLocation) {
 
-//        File file = new File("src/main/resources/data/Tariff_20220331.csv");
-//        try (BufferedReader br = new BufferedReader(new FileReader(file.getAbsolutePath()))) {
         try (BufferedReader br = new BufferedReader(new FileReader(fileLocation))) {
             String line;
             br.readLine();  // 첫 라인 스킵
